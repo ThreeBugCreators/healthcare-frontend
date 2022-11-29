@@ -14,9 +14,10 @@ import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
 import { HomeModule } from './modules/home/home.module';
 import { RatingModule } from 'primeng/rating';
+import { environment } from '../environments/environment';
 
 const config: SocketIoConfig = {
-  url: 'http://localhost:6969/chat',
+  url: environment.chatSocket,
   options: {
     transports: ['websocket'],
   },
