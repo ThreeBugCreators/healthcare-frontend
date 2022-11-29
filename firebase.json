@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/healthcare-reborn-client",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
