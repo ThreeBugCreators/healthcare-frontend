@@ -6,6 +6,7 @@
     "start": "ng serve",
     "webpack": "ng webpack-serve",
     "build": "ng build",
+    "build-prod": "ng build --prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
