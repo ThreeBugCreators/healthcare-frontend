@@ -28,13 +28,10 @@ export class LoginGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-      console.log('Here');
       if (this.authenService.isSingedIn()) {
-        console.log('Cannot');
         this.router.navigate(['/app']); // or home
         return false;
       }
-      console.log('Can');
       return true;
     }
 }

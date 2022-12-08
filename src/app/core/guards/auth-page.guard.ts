@@ -14,8 +14,6 @@ export class AuthPageGuard implements CanActivate {
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        console.log(route);
-        console.log(state);
         const currentUser: any = this.authenticationService.currentUserValue;
         const {
             refreshToken,
