@@ -1,0 +1,66 @@
+<div class="advise-page-container">
+    <div class="left">
+        <ul>
+            <li *ngFor="let room of rooms">
+                <div class="friend-card">
+                    <div class="friend-card-img">
+                        <img src="{{ room.roomProfilePicture ? room.roomProfilePicture : '../../../../../assets/images/default_avatar.svg' }}"
+                            style="width: 60px; height: 60px;">
+                    </div>
+
+                    <div class="friend-card-msg">
+                        <div class="friend-card-name">
+                            <span class="msg-name-text">{{ room.name }}</span>
+                        </div>
+
+                        <div class="friend-card-msg-detail">
+                            <span class="msg-small-text">You: hello world</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="right" *ngIf="this.currentRoom">
+        <div class="right-nav">
+            <img src="../../../../../assets/images/default_avatar.svg"
+                style="width: 40px; height: 40px; margin-right: 20px;">
+            <span> {{ this.currentRoom.name }}</span>
+        </div>
+
+        <div #scrollMe class="right-chat-box">
+            <div *ngFor="let message of this.messages">
+                <div *ngIf="message.from === this.currentUser._id" class="right-chat-message-right">
+                    <div class="msg-right">
+                        <span>{{ message.content }}</span>
+                    </div>
+                </div>
+
+                <div *ngIf="message.from != this.currentUser._id" class="right-chat-message-left">
+                    <div class="msg-left">
+                        <span>{{ message.content }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-chat-input">
+            <div class="right-chat-input-left">
+                <textarea
+                    [(ngModel)]="chatContent"
+                    (keydown)="triggerFunction($event)"
+                > </textarea>
+            </div>
+
+            <div class="right-chat-input-right">
+                <mat-icon
+                    class="button-send"
+                    (click)="sendMessage()"
+                >
+                    send
+                </mat-icon>
+            </div>
+        </div>
+    </div>
+</div>
