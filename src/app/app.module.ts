@@ -35,7 +35,6 @@ const config: SocketIoConfig = {
     BrowserAnimationsModule,
     AppRoutingModule,
     AuthModule,
-    HomeModule,
     HttpClientModule,
     SharedModule,
     CoreModule,
