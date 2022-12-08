@@ -1,0 +1,47 @@
+<div class="survey-title">
+    <h3>Thanks for using our services, it's time to for us listen to your feedback</h3>
+</div>
+
+<div class="survey-page">
+    <form [formGroup]="surveyData">
+        <div class="form-field">
+            <div>
+                <label for="survey-rating">Hospital infrastructure: </label>
+            </div>
+            <p-rating id="survey-rating" formControlName="rating" [cancel]="false"></p-rating>
+        </div>
+
+        <div class="form-field">
+            <div>
+                <label for="survey-rating">Service attitude: </label>
+            </div>
+            <p-rating id="survey-rating" formControlName="rating" [cancel]="false"></p-rating>
+        </div>
+
+        <div class="form-field">
+            <div>
+                <label for="survey-rating">Doctor: </label>
+            </div>
+            <p-rating id="survey-rating" formControlName="rating" [cancel]="false"></p-rating>
+        </div>
+      
+        <div class="form-field">
+            <div>
+                <label for="survey-description">Your thoughts: </label>
+            </div>
+            <textarea
+                id="survey-description"
+                [rows]="10"
+                [cols]="60"
+                pInputTextarea
+                [autoResize]="true"
+            >
+            </textarea>
+        </div>
+      
+        <div class="form-field">
+            <p-button label="Submit"></p-button>
+        </div>
+
+      </form>
+</div>

@@ -1,0 +1,70 @@
+<div class="booking-page">
+    <div class="profile" *ngIf="doctor">
+        <div class="doctor-dialog-img">
+            <img src="{{ doctor.avatar ? doctor.avatar : '../../../../../assets/images/doctor_default_avatar.png' }}"
+                [style]="{
+                    width: '200px',
+                    height: '200px'
+                }">
+        </div>
+
+        <div class="doctor-dialog-img">
+            <div class="doctor-name-age">
+                <div class="doctor-name" style="margin-right: 10px;">{{ doctor.name }}</div>
+                <div style="font-size: medium; font-weight: 600;">{{ doctor.age }}</div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="appointment">
+        <h4>Create an appointment</h4>
+
+        <form [formGroup]="bookingForm">
+            <div class="field col-12 md:col-4">
+                <div>
+                    <label for="basic">Basic</label>
+                </div>
+                <p-calendar
+                    formControlName="date" 
+                    inputId="basic"
+                >
+                </p-calendar>
+            </div>
+
+
+            <div class="field col-12 md:col-4">
+                <div>
+                    <label for="timeonly">Time: </label>
+                </div>
+                <p-calendar
+                    [timeOnly]="true"
+                    hourFormat="{{ 24 }}"
+                    inputId="timeonly"
+                    formControlName="time"
+                >
+                </p-calendar>
+            </div>
+
+            <div>
+                <div>
+                    <label>Note: </label>
+                </div>
+                <textarea
+                    style="margin-left: 5px;"
+                    pInputTextarea
+                    [cols]="40"
+                    [rows]="5"
+                >
+                </textarea>
+            </div>
+
+            <div
+                style="margin-top: 2rem;"
+            >
+                <p-button label="Submit" ></p-button>
+            </div>
+        </form>
+
+    </div>
+</div>
