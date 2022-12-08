@@ -6,14 +6,44 @@ import { map } from 'rxjs/operators';
 import { User } from '../models';
 import { environment } from '../../../environments/environment';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+};
+
+const AccessTokenKey = 'auth-token';
+const RefreshTokenKey = 'auth-refreshtoken';
+const UserKey = 'user';
+
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
   constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<User>({} as User);
+    this.currentUserSubject = new BehaviorSubject<User>(
+      this.getUserFromLocalStorage() as User
+    );
     this.currentUser = this.currentUserSubject.asObservable();
+  }
+
+  getUserFromLocalStorage(): any {
+    let user: Object = {};
+    let accessToken = '';
+    let refreshToken = '';
+
+    try {
+      user = JSON.parse(localStorage.getItem('user') || '');
+      accessToken = localStorage.getItem(AccessTokenKey) || '';
+      refreshToken = localStorage.getItem(RefreshTokenKey) || '';
+
+      return {
+        accessToken,
+        refreshToken,
+        ...user,
+      };
+    } catch (error) {
+      return null;
+    }
   }
 
   public get currentUserValue(): User {
@@ -39,7 +69,12 @@ export class AuthenticationService {
       .pipe(
         map((loginData) => {
           const { data } = loginData;
-          localStorage.setItem('user', JSON.stringify(data));
+          const { refreshToken, accessToken, ...userData } = data;
+
+          localStorage.setItem(UserKey, JSON.stringify(userData));
+          localStorage.setItem(AccessTokenKey, accessToken);
+          localStorage.setItem(RefreshTokenKey, refreshToken);
+
           this.currentUserSubject.next(data);
           return data;
         })
@@ -60,7 +95,7 @@ export class AuthenticationService {
       },
       {
         headers: this.initHeaders(),
-      },
+      }
     );
   }
 
@@ -71,19 +106,28 @@ export class AuthenticationService {
 
   isSingedIn(): boolean {
     try {
-      const user = JSON.parse(localStorage.getItem('user') || '');
+      const user = JSON.parse(localStorage.getItem(UserKey) || '');
+      const accessToken = localStorage.getItem(AccessTokenKey);
+      const refreshToken = localStorage.getItem(RefreshTokenKey);
 
-      if (user) {
-        const { accessToken, refreshToken } = user;
-
-        if (accessToken && refreshToken) {
-          return true;
-        }
+      if (user && accessToken && refreshToken) {
+        return true;
       }
 
       return false;
     } catch (error) {
+      console.log(error);
       return false;
     }
+  }
+
+  refreshToken(refreshToken: string) {
+    return this.http.post(
+      `${environment.apiGatewayUrl}/api/v1/auth/refresh-token`,
+      {
+        refreshToken,
+      },
+      httpOptions
+    );
   }
 }

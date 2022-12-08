@@ -12,10 +12,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
+import { HomeModule } from './modules/home/home.module';
+import { RatingModule } from 'primeng/rating';
+import { environment } from '../environments/environment';
 
-const config: SocketIoConfig = { url: 'http://localhost:6969/chat', options: {
-  transports: ['websocket'],
-}};
+const config: SocketIoConfig = {
+  url: environment.chatSocket,
+  options: {
+    transports: ['websocket'],
+  },
+};
 
 @NgModule({
   declarations: [
@@ -33,6 +39,7 @@ const config: SocketIoConfig = { url: 'http://localhost:6969/chat', options: {
     SharedModule,
     CoreModule,
     SocketIoModule.forRoot(config),
+    RatingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

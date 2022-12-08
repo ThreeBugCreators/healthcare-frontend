@@ -1,0 +1,43 @@
+<div class="search-page">
+    <div class="search-page-center">
+        <div class="search-page-logo">
+            <img src="../../.././../../assets/logo/healthcare.svg" style="width: 350px; height: 350px;">
+        </div>
+        <div class="search-page-input">
+            <div>Your symptoms:</div>
+            <span class="p-fluid">
+                <p-autoComplete [(ngModel)]="hashtags" [suggestions]="filteredSymptoms" (completeMethod)="filterSymptoms($event)"  [multiple]="true">
+                </p-autoComplete>
+            </span>
+
+        </div>
+
+        <div class="search-page-input">
+            <div>Current city:</div>
+            <p-dropdown
+                [options]="cities"
+                [(ngModel)]="selectedCity"
+                placeholder="Select a City"
+                optionLabel="name"
+            >
+            </p-dropdown>
+        </div>
+
+        <div *ngIf="this.selectedCity" class="search-page-input" style="margin-top: 20px;">
+            <div>Select hospital:</div>
+            <p-dropdown
+                [options]="this.hospitals[this.selectedCity.code]"
+                [(ngModel)]="selectedHosptial"
+                placeholder="Select a City"
+                optionLabel="name"
+            >
+            </p-dropdown>
+        </div>
+
+        <div class="search-page-button">
+            <button (click)="findDoctors()">Find your doctor</button>
+            <button routerLink="/app/doctors">See list of doctors</button>
+        </div>
+
+    </div>
+</div>
