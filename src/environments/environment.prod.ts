@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiGatewayUrl: 'http://api-healthcare.lequocthinh.com',
+  apiGatewayUrl: 'https://api-healthcare.lequocthinh.com',
   appName: 'Healthcare',
-  chatSocket: 'http://api-healthcare.lequocthinh.com/chat'
+  chatSocket: 'https://api-healthcare.lequocthinh.com/chat'
 };
