@@ -51,6 +51,7 @@
                     <label>Note: </label>
                 </div>
                 <textarea
+                    formControlName="note"
                     style="margin-left: 5px;"
                     pInputTextarea
                     [cols]="40"
@@ -62,7 +63,7 @@
             <div
                 style="margin-top: 2rem;"
             >
-                <p-button label="Submit" ></p-button>
+                <p-button label="Submit" (onClick)="submitAppointment()" ></p-button>
             </div>
         </form>
 

@@ -1,3 +1,7 @@
+<div class="predict-disease" *ngIf="isPassing">
+    <p style="font-size: larger;" >{{ 'Diseases: ' + diseases.join(', ') }}</p>
+</div>
+
 <p-orderList id="doctor-list" [value]="doctors" [style]="{'margin-top': '3rem', 'margin-right': '3rem'}"
     [listStyle]="{'max-height':'30rem'}" header="Doctors" filterBy="name" filterPlaceholder="Filter by name"
     [dragdrop]="true">

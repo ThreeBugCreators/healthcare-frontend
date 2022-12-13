@@ -11,6 +11,18 @@ const routesConfiguration: Routes = [
     redirectTo: 'auth/login',
   },
   {
+    path: '',
+    canActivate: [AuthGuard],
+    component: AppLayoutComponent,
+    children: [
+      {
+        path: 'app',
+        loadChildren: () =>
+          import('src/app/modules/home/home.module').then((m) => m.HomeModule),
+      },
+    ],
+  },
+  {
     path: 'auth',
     canActivate: [],
     component: AuthLayoutComponent,
