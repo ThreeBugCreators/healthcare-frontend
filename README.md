@@ -3,9 +3,9 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-Healthcare: Doctor matching is a product that you can go there and find yourself a doctor nearby with just your symptoms and address
-
 19N15 - TEAM 5 - Healthcare: Doctor Matching
+
+
 
 ## Team 5 - Members
 - Lê Quốc Thịnh - 102190141
