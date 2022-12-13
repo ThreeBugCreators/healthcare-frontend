@@ -4,6 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { InputTextModule } from 'primeng/inputtext';
+import { ToastModule } from 'primeng/toast';
+import { TableModule } from 'primeng/table';
+import { CardModule } from 'primeng/card';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   imports: [
@@ -21,6 +25,10 @@ import { InputTextModule } from 'primeng/inputtext';
     RouterModule,
     HttpClientModule,
     InputTextModule,
+    ToastModule,
+    TableModule,
+    CardModule,
+    ConfirmDialogModule,
   ]
 })
 export class SharedModule { }

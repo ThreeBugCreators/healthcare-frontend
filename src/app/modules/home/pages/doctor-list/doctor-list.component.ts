@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChatService } from 'src/app/core/services/chat.service';
 import { DoctorService } from 'src/app/core/services/doctor.service';
 
@@ -12,14 +12,35 @@ export class DoctorListComponent implements OnInit {
   displayDoctorModal: boolean = false;
   currentDoctor: any;
   doctors: any;
+  predictData: any;
+  isPassing = false;
+  diseases: any;
 
   constructor(
     private router: Router,
     private doctorService: DoctorService,
     private chatService: ChatService,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
+    const isPassingData: any = JSON.parse(this.route.snapshot.paramMap.get('isPassingData') || '{}');
+    
+    if (isPassingData === true) {
+      const predictData = JSON.parse(localStorage.getItem('doctor-data') || '{}');
+      const {
+        diseasesData,
+        doctors,
+      } = predictData;
+
+      this.diseases = diseasesData.map((data: any) => data.disease);
+      this.isPassing = true;
+      this.doctors = doctors;
+      this.predictData = diseasesData;
+
+      return;
+    }
+
     this.getDoctors();
   }
 

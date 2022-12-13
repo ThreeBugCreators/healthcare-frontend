@@ -5,6 +5,7 @@ import { Symptomps } from 'src/app/core/constants';
 import { Observable, startWith, map, Subscription } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { DoctorService } from 'src/app/core/services/doctor.service';
+import { Router } from '@angular/router';
 
 interface City {
   name: string,
@@ -17,7 +18,10 @@ interface City {
   styleUrls: ['./search-page.component.scss'],
 })
 export class SearchPageComponent implements OnInit {
-  constructor(private doctorService: DoctorService) {
+  constructor(
+    private doctorService: DoctorService,
+    private router: Router,
+  ) {
     this.cities = [
       {
         name: 'Đà Nẵng',
@@ -107,10 +111,6 @@ export class SearchPageComponent implements OnInit {
     let query = event.query;
     for (let i = 0; i < this.options.length; i++) {
       let country = this.options[i];
-      console.log({
-        country,
-        query,
-      })
       if (country.toLowerCase().indexOf(query.toLowerCase()) == 0) {
         filtered.push(country);
       }
@@ -135,8 +135,14 @@ export class SearchPageComponent implements OnInit {
   findDoctors() {
     if (this.hashtags.length) {
       this.doctorService.getDoctorsBySymptoms(this.hashtags).subscribe({
-        next: (data) => {
-          console.log(data);
+        next: (data: any) => {
+          const {
+            diseasesData,
+            doctor,
+          } = data;
+          
+          localStorage.setItem('doctor-data', JSON.stringify({ diseasesData, doctors: doctor }));
+          this.router.navigate(['/app/doctors', { isPassingData: true }])
         },
         error: (err) => {},
       });

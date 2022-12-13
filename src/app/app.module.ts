@@ -15,6 +15,8 @@ import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
 import { HomeModule } from './modules/home/home.module';
 import { RatingModule } from 'primeng/rating';
 import { environment } from '../environments/environment';
+import { MessageService } from 'primeng/api';
+
 
 const config: SocketIoConfig = {
   url: environment.chatSocket,
@@ -35,13 +37,16 @@ const config: SocketIoConfig = {
     BrowserAnimationsModule,
     AppRoutingModule,
     AuthModule,
+    HomeModule,
     HttpClientModule,
     SharedModule,
     CoreModule,
     SocketIoModule.forRoot(config),
     RatingModule,
   ],
-  providers: [],
+  providers: [
+    MessageService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

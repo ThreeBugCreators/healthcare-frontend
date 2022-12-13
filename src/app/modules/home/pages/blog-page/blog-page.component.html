@@ -1,1 +1,12 @@
-<p>blog-page works!</p>
+<div class="grid-container">
+    <div class="grid-item" *ngFor="let article of articles">
+        <p-card (click)="handleNews(article.link)"  header="{{ article.title }}" subheader="{{ article.subTitle }}" [style]="{width: '360px'}" styleClass="p-card-shadow">
+            <ng-template pTemplate="header">
+                <img style="width: 360px; height: 240px;" clas="thumbnail" alt="Card" src="{{ article.thumbnail }}">
+            </ng-template>
+            <p>{{ article.description }}</p>
+            <ng-template pTemplate="footer">
+            </ng-template>
+        </p-card>
+    </div>
+  </div>

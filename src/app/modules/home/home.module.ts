@@ -24,6 +24,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { BookingPageComponent } from './pages/booking-page/booking-page.component';
 import { RouterModule } from '@angular/router';
 import { CalendarModule } from 'primeng/calendar';
+import { BookingListComponent } from './pages/booking-list/booking-list.component';
+import { BlogDetailComponent } from './pages/blog-detail/blog-detail.component';
 
 
 @NgModule({
@@ -36,6 +38,8 @@ import { CalendarModule } from 'primeng/calendar';
     SurveyPageComponent,
     DoctorListComponent,
     BookingPageComponent,
+    BookingListComponent,
+    BlogDetailComponent,
     // For hashtag input
   ],
   imports: [

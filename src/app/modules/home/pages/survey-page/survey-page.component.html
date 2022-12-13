@@ -8,21 +8,21 @@
             <div>
                 <label for="survey-rating">Hospital infrastructure: </label>
             </div>
-            <p-rating id="survey-rating" formControlName="rating" [cancel]="false"></p-rating>
+            <p-rating id="survey-rating" formControlName="infraRating" [cancel]="false"></p-rating>
         </div>
 
         <div class="form-field">
             <div>
                 <label for="survey-rating">Service attitude: </label>
             </div>
-            <p-rating id="survey-rating" formControlName="rating" [cancel]="false"></p-rating>
+            <p-rating id="survey-rating" formControlName="serviceRating" [cancel]="false"></p-rating>
         </div>
 
         <div class="form-field">
             <div>
                 <label for="survey-rating">Doctor: </label>
             </div>
-            <p-rating id="survey-rating" formControlName="rating" [cancel]="false"></p-rating>
+            <p-rating id="survey-rating" formControlName="doctorRating" [cancel]="false"></p-rating>
         </div>
       
         <div class="form-field">
@@ -31,6 +31,7 @@
             </div>
             <textarea
                 id="survey-description"
+                formControlName="thoughts"
                 [rows]="10"
                 [cols]="60"
                 pInputTextarea
@@ -40,7 +41,7 @@
         </div>
       
         <div class="form-field">
-            <p-button label="Submit"></p-button>
+            <p-button label="Submit" (onClick)="submitSurvey()" ></p-button>
         </div>
 
       </form>
