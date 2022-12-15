@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 
 import { User } from '../models';
 import { environment } from '../../../environments/environment';
+import { LocalStorageHelper } from '../helpers/local-storage.helper';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -70,7 +71,7 @@ export class AuthenticationService {
         map((loginData) => {
           const { data } = loginData;
           const { refreshToken, accessToken, ...userData } = data;
-
+          LocalStorageHelper.next(userData);
           localStorage.setItem(UserKey, JSON.stringify(userData));
           localStorage.setItem(AccessTokenKey, accessToken);
           localStorage.setItem(RefreshTokenKey, refreshToken);

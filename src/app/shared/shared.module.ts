@@ -8,6 +8,8 @@ import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { CardModule } from 'primeng/card';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { RatingModule } from 'primeng/rating';
+import { MessageService } from 'primeng/api'; 
 
 @NgModule({
   imports: [
@@ -18,6 +20,9 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     HttpClientModule,
   ],
   declarations: [],
+  providers: [
+    MessageService,
+  ],
   exports: [
     CommonModule,
     FormsModule,
@@ -29,6 +34,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     TableModule,
     CardModule,
     ConfirmDialogModule,
+    RatingModule,
   ]
 })
 export class SharedModule { }

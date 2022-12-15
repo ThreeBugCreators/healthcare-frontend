@@ -1,7 +1,10 @@
 .nav-right {
     .dropdown {
         position: relative;
-        display: inline-block;
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
         cursor: pointers;
     }
 
