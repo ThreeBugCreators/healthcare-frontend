@@ -13,7 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
 import { HomeModule } from './modules/home/home.module';
-import { RatingModule } from 'primeng/rating';
 import { environment } from '../environments/environment';
 import { MessageService } from 'primeng/api';
 
@@ -42,7 +41,6 @@ const config: SocketIoConfig = {
     SharedModule,
     CoreModule,
     SocketIoModule.forRoot(config),
-    RatingModule,
   ],
   providers: [
     MessageService,
